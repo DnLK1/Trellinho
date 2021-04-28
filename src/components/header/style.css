@@ -1,0 +1,21 @@
+.header {
+  background-color: #000000;
+}
+
+.header__info {
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  width: 95%;
+  margin: auto;
+}
+
+.header__nomeProjeto {
+  color: white;
+  font-weight: 600;
+  margin-left: 2rem;
+}
+
+.header__notifications {
+  color: white;
+}

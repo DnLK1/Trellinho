@@ -1,0 +1,22 @@
+.list {
+  width: 25%;
+  margin-top: 3rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #272a2b;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
+}
+
+.list__info {
+  justify-content: space-between;
+}
+
+.list__editIcon {
+  color: white;
+}
+
+.lista__nomeLista {
+  color: white;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}

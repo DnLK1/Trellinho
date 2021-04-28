@@ -1,0 +1,16 @@
+.card {
+  background-color: #000000;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
+  margin-bottom: 1rem;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card-name {
+  color: white;
+  margin: 0;
+}
