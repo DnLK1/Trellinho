@@ -1,4 +1,6 @@
 .cards-lists {
+  flex-direction: row;
   width: 95%;
   margin: auto;
+  overflow: auto;
 }

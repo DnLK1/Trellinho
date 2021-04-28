@@ -1,0 +1,25 @@
+.add-button {
+  background-color: #737373;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 10%;
+}
+
+.add-button--first-click {
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+  border-radius: 5px;
+  padding: 0.9rem;
+  width: 10%;
+}
+
+.add-button-icon {
+  color: white;
+}
+
+.add-button-text {
+  margin: 0;
+  margin-left: 0.5rem;
+  color: white;
+  font-weight: 600;
+}

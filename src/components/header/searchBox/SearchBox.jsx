@@ -28,7 +28,7 @@ const SearchBox = () => {
         },
       }}
       size="small"
-      placeholder="Busca..."
+      placeholder="Search..."
       disableunderline="true"
       variant="outlined"
     />

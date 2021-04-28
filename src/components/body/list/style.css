@@ -1,10 +1,17 @@
 .list {
   width: 25%;
-  margin-top: 3rem;
+  max-height: 60vh;
+  margin-top: 1.5rem;
+  margin-left: 2rem;
   padding: 1rem;
   border-radius: 5px;
   background-color: #404040;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
+  flex-shrink: 0;
+}
+
+.list:first-child {
+  margin-left: 0;
 }
 
 .list__info {
@@ -21,6 +28,15 @@
 .list__nameList {
   color: white;
   font-weight: 600;
-  width: 90%;
+  width: 85%;
   margin: 0;
+}
+
+.teste {
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.teste::-webkit-scrollbar {
+  display: none;
 }

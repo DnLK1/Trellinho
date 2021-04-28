@@ -6,7 +6,7 @@ import "./style.css";
 
 const Header = () => {
   return (
-    <section className="header container">
+    <header className="header container">
       <div className="header__info container">
         <div className="container">
           <SearchBox />
@@ -17,7 +17,7 @@ const Header = () => {
         </div>
         <NotificationsIcon className="header__notifications" />
       </div>
-    </section>
+    </header>
   );
 };
 
