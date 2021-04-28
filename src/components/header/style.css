@@ -1,5 +1,6 @@
 .header {
-  background-color: #000000;
+  background-color: #404040;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
 }
 
 .header__info {

@@ -3,7 +3,7 @@ import "./style.css";
 
 const EditableTitle = ({ classStyle, defaultText }) => {
   return (
-    <p className={classStyle} contenteditable="true">
+    <p className={classStyle} contentEditable="true">
       {defaultText}
     </p>
   );

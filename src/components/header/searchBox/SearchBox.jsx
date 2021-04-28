@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     overflow: "hidden",
     color: "white",
-    backgroundColor: "#272a2b",
+    backgroundColor: "#262626",
     "&::placeholder": {
       color: "white",
       opacity: "80%",
@@ -29,7 +29,7 @@ const SearchBox = () => {
       }}
       size="small"
       placeholder="Busca..."
-      disableUnderline="true"
+      disableunderline="true"
       variant="outlined"
     />
   );

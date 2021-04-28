@@ -3,22 +3,24 @@
   margin-top: 3rem;
   padding: 1rem;
   border-radius: 5px;
-  background-color: #272a2b;
+  background-color: #404040;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
 }
 
 .list__info {
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .list__editIcon {
   color: white;
 }
 
-.lista__nomeLista {
+.list__nameList {
   color: white;
   font-weight: 600;
-  margin-top: 0.5rem;
   width: 90%;
+  margin: 0;
 }
