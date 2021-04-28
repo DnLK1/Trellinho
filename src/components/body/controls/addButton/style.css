@@ -1,8 +1,10 @@
 .add-button {
   background-color: #737373;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.8rem;
   width: 10%;
+  color: white;
+  font-weight: 600;
 }
 
 .add-button--first-click {

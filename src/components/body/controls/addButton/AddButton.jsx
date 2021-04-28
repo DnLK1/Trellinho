@@ -1,13 +1,21 @@
 import React from "react";
 import Add from "@material-ui/icons/Add";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 
 const AddButton = (props) => {
+  const history = useHistory();
+  const handleClick = () => history.push(props.onClick);
+
   return (
-    <div className="add-button container">
+    <button
+      type="button"
+      className="add-button container"
+      onClick={handleClick}
+    >
       <Add className="add-button-icon" />
-      <p className="add-button-text">{props.addButtonName}</p>
-    </div>
+      {props.addButtonName}
+    </button>
   );
 };
 

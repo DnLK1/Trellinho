@@ -6,7 +6,7 @@ import "./style.css";
 const Controls = () => {
   return (
     <div className="container controls">
-      <AddButton addButtonName="Add list" />
+      <AddButton addButtonName="Add list" onClick="/add" />
       <FilterTag />
     </div>
   );

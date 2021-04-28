@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchBox = () => {
+const SearchBox = (props) => {
   const classes = useStyles();
 
   return (
@@ -28,9 +28,10 @@ const SearchBox = () => {
         },
       }}
       size="small"
-      placeholder="Search..."
+      placeholder={props.disabled === true ? "Disabled" : "Search..."}
       disableunderline="true"
       variant="outlined"
+      disabled={props.disabled}
     />
   );
 };
