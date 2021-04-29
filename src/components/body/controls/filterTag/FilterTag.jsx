@@ -4,11 +4,12 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import { useLocation } from "react-router-dom";
 import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
+    marginLeft: theme.spacing(1),
     minWidth: 120,
   },
   selectEmpty: {
@@ -18,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
 
 const FilterTag = () => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <div>
-      <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl
+        variant="outlined"
+        className={classes.formControl}
+        disabled={location.pathname === "/add" ? true : false}
+      >
         <InputLabel>Filter tags</InputLabel>
         <Select label="Filter tags">
           <MenuItem value="">
