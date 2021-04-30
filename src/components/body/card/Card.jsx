@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import EditableTitle from "../../header/editableTitle/EditableTitle";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
-import SaveIcon from "@material-ui/icons/Save";
 import { Route, Switch, useHistory } from "react-router";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import AddCardForm from "./addCardForm/AddCardForm";
 import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
+  Button: {
+    padding: 0,
+    color: "#ff6961",
+  },
   underline: {
     "&&&:before": {
       borderBottom: "none",
@@ -19,41 +23,63 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Card = (props) => {
+const Card = ({
+  description,
+  listID,
+  id,
+  cardName,
+  editable,
+  onChange,
+  handleDeleteCard,
+}) => {
   const [isInCard, setIsInCard] = useState(false);
-  const [tempDescription, setTempDescription] = useState(props.description);
-  const cardID = "/cardinfo/" + props.listID + "/" + props.id;
+  const [tempDescription, setTempDescription] = useState(description);
+  const cardID = "/cardinfo/" + listID + "/" + id;
   const history = useHistory();
   const classes = useStyles();
 
-  const handleClick = () => {
+  const handleMenuClick = () => {
     isInCard === true ? history.push("/") : history.push(cardID);
     setIsInCard(isInCard === true ? false : true);
-    setTempDescription(props.description);
+    setTempDescription(description);
   };
+
+  function handleDeleteClick() {
+    let cardID = id;
+    handleDeleteCard(cardID);
+  }
 
   return (
     <div className="card">
       <div className="card__info container">
         <EditableTitle
           classStyle="card-name"
-          defaultText={props.cardName}
-          editable={props.editable}
+          defaultText={cardName}
+          editable={editable}
         />
         <Switch>
           <Route exact path="/">
             <MenuIcon
               className="card__infoIcon"
               fontSize="small"
-              onClick={handleClick}
+              onClick={handleMenuClick}
             />
           </Route>
           <Route path={cardID}>
-            <MenuOpenIcon
-              className="card__closeIcon"
-              fontSize="small"
-              onClick={handleClick}
-            />
+            <div className="container">
+              <Button
+                className={classes.Button}
+                size="small"
+                onClick={handleDeleteClick}
+              >
+                Delete
+              </Button>
+              <MenuOpenIcon
+                className="card__closeIcon"
+                fontSize="small"
+                onClick={handleMenuClick}
+              />
+            </div>
           </Route>
         </Switch>
       </div>
@@ -62,7 +88,7 @@ const Card = (props) => {
           <div>
             <TextField
               InputProps={{ classes }}
-              value={props.description}
+              value={description}
               disabled
               fullWidth="true"
               size="small"
@@ -72,28 +98,12 @@ const Card = (props) => {
       </Switch>
       <Switch>
         <Route path={cardID}>
-          <form
-            id={props.id}
-            onSubmit={(event) => {
-              event.preventDefault();
-              props.onChange(event, props.id);
-            }}
-          >
-            <div className="card__description container">
-              <TextField
-                id="updateDescription"
-                fullWidth="true"
-                multiline="true"
-                value={tempDescription}
-                onChange={(event) => {
-                  setTempDescription(event.target.value);
-                }}
-              />
-              <button type="submit" className="card__editDescriptionButton">
-                <SaveIcon className="card__editIcon" fontSize="small" />
-              </button>
-            </div>
-          </form>
+          <AddCardForm
+            id={id}
+            onChange={onChange}
+            tempDescription={tempDescription}
+            setTempDescription={setTempDescription}
+          />
         </Route>
       </Switch>
     </div>

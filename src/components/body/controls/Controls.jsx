@@ -5,14 +5,14 @@ import { Switch, Route } from "react-router-dom";
 import AddNewListForm from "./addNewListForm/AddNewListForm";
 import "./style.css";
 
-const Controls = (props) => {
+const Controls = () => {
   return (
     <div className="container controls">
       <AddButton addButtonName="Add list" path="/newlist" />
       <FilterTag />
       <Switch>
         <Route path="/newlist">
-          <AddNewListForm onChange={props.onChange} />
+          <AddNewListForm />
         </Route>
       </Switch>
     </div>

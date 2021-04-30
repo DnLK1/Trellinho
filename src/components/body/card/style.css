@@ -23,23 +23,11 @@
 
 .card__infoIcon {
   color: white;
+  cursor: pointer;
 }
 
 .card__closeIcon {
   color: white;
-}
-
-.card__description {
-  justify-content: space-between;
-  margin-top: 0.5rem;
-}
-
-.card__editDescriptionButton {
-  background-color: transparent;
-  border: none;
   cursor: pointer;
-}
-
-.card__editIcon {
-  color: white;
+  margin-left: 0.75rem;
 }

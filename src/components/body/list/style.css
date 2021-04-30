@@ -37,9 +37,16 @@
   margin-left: 0.5rem;
 }
 
-.list__editIcon {
+.list__addIcon {
   color: white;
-  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.list__backspaceIcon {
+  color: white;
+  opacity: 0.7;
+  cursor: pointer;
+  margin-left: 0.75rem;
 }
 
 .list__nameList {

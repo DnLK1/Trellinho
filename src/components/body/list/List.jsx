@@ -1,23 +1,39 @@
 import React, { useState } from "react";
 import EditableTitle from "../../header/editableTitle/EditableTitle";
 import Card from "../card/Card";
-import EditIcon from "@material-ui/icons/Edit";
 import Add from "@material-ui/icons/Add";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import AddNewCard from "./addNewCard/AddNewCard";
-import "./style.css";
 import { Route, Switch, useHistory, useLocation } from "react-router";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const List = (props) => {
+import "./style.css";
+
+const useStyles = makeStyles((theme) => ({
+  Button1: {
+    padding: 0,
+    color: "#ff6961",
+  },
+  Button2: {
+    padding: 0,
+  },
+}));
+
+const List = ({ id, listName, handleDeleteList }) => {
   const [card, setCard] = useState([]);
   const [firstClick, setFirstClick] = useState("list__editIcon--first-click");
-
   const pointer = { cursor: "pointer" };
-  const listID = "/newcard/" + props.id;
+  const listIDDeleteCard = "/deletecard/" + id;
+  const listIDAddCard = "newcard/" + id;
+  const listIDAddCardPath = "/newcard/" + id;
+  const classes = useStyles();
   const location = useLocation();
   const history = useHistory();
-  const handleClick = () => {
-    history.push(listID);
-    setFirstClick("list__editIcon");
+
+  const handleAddClick = () => {
+    history.push(listIDAddCard);
+    setFirstClick("list__addIcon");
   };
 
   function handleNewCard(event) {
@@ -38,6 +54,27 @@ const List = (props) => {
     setCard(updatedCardArray);
   }
 
+  function handleDeleteIconClick() {
+    history.push(listIDDeleteCard);
+  }
+
+  function handleDeleteClick() {
+    let listID = id;
+    handleDeleteList(listID);
+  }
+
+  function handleCancelClick() {
+    history.push("/");
+  }
+
+  function handleDeleteCard(event) {
+    let willDeleteCardID = event;
+    let updatedCardArray = card.filter(
+      (cards, index) => index !== willDeleteCardID
+    );
+    setCard(updatedCardArray);
+  }
+
   return (
     <div className="list">
       <div
@@ -49,16 +86,46 @@ const List = (props) => {
       >
         <EditableTitle
           classStyle="list__nameList"
-          defaultText={props.listName}
+          defaultText={listName}
           editable={"true"}
         />
-        <EditIcon className="list__editIcon" fontSize="small" />
-        <Add className={firstClick} onClick={handleClick} style={pointer} />
+        <Switch>
+          <Route exact path="/">
+            <Add
+              className={firstClick}
+              onClick={handleAddClick}
+              style={pointer}
+            />
+            <HighlightOffIcon
+              size="small"
+              className="list__backspaceIcon"
+              onClick={handleDeleteIconClick}
+            />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path={listIDDeleteCard}>
+            <Button
+              className={classes.Button1}
+              size="small"
+              onClick={handleDeleteClick}
+            >
+              Delete
+            </Button>
+            <Button
+              className={classes.Button2}
+              size="small"
+              onClick={handleCancelClick}
+            >
+              Cancel
+            </Button>
+          </Route>
+        </Switch>
       </div>
       <div>
         <Switch>
-          <Route path={listID}>
-            <AddNewCard onChange={handleNewCard} id={props.id} />
+          <Route path={listIDAddCardPath}>
+            <AddNewCard onChange={handleNewCard} id={id} />
           </Route>
         </Switch>
       </div>
@@ -71,11 +138,12 @@ const List = (props) => {
           return (
             <Card
               id={index}
-              listID={listID}
+              listID={listIDAddCard}
               onChange={handleUpdate}
               cardName={card.title}
               editable={location.pathname === "/newcard" ? "false" : "true"}
               description={card.description}
+              handleDeleteCard={handleDeleteCard}
             />
           );
         })}

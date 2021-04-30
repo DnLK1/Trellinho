@@ -4,14 +4,14 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import "./style.css";
 
-const AddButton = (props) => {
+const AddButton = ({ path, addButtonName }) => {
   const [firstClick, setFirstClick] = useState(
     "add-button--first-click container"
   );
   const location = useLocation();
   const history = useHistory();
-  const handleClick = () => {
-    history.push(props.path);
+  const handleAddClick = () => {
+    history.push(path);
     setFirstClick("add-button container");
   };
 
@@ -19,11 +19,11 @@ const AddButton = (props) => {
     <Button
       variant={location.pathname === "/newlist" ? "outlined" : "contained"}
       className={firstClick}
-      onClick={handleClick}
+      onClick={handleAddClick}
       startIcon={<Add />}
       disabled={location.pathname === "/newlist" ? true : false}
     >
-      {props.addButtonName}
+      {addButtonName}
     </Button>
   );
 };

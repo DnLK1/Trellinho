@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import HandleNewList from "../../../../contexts/HandleNewList";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -13,17 +14,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddNewListForm = (props) => {
+const AddNewListForm = () => {
   const [newListName, setNewListName] = useState("");
   const classes = useStyles();
   const history = useHistory();
   const handleClick = () => history.push("/");
+  const handleNewList = useContext(HandleNewList);
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        props.onChange(event);
+        handleNewList(event);
         setNewListName("");
         handleClick();
       }}
@@ -42,7 +44,7 @@ const AddNewListForm = (props) => {
       <Button
         className={classes.Button}
         variant="outlined"
-        onClick={handleClick}
+        onClick={handleClick.bind(this)}
       >
         Cancel
       </Button>

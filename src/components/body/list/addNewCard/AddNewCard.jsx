@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddNewCard = (props) => {
+const AddNewCard = ({ id, onChange }) => {
   const [newCardName, setNewCardName] = useState("");
   const [newCardDescription, setNewCardDescription] = useState("");
   const classes = useStyles();
@@ -23,10 +23,10 @@ const AddNewCard = (props) => {
 
   return (
     <form
-      id={props.id}
+      id={id}
       onSubmit={(event) => {
         event.preventDefault();
-        props.onChange(event);
+        onChange(event);
         setNewCardName("");
         setNewCardDescription("");
       }}
