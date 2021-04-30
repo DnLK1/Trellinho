@@ -16,8 +16,8 @@ const Body = () => {
     <>
       <Controls onChange={handleNewList} />
       <ScrollContainer className="container cards-lists">
-        {list.map((listTitle, id) => {
-          return <List key={id} listName={listTitle} />;
+        {list.map((listTitle, index) => {
+          return <List id={index} listName={listTitle} />;
         })}
       </ScrollContainer>
     </>

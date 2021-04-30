@@ -17,11 +17,11 @@ const AddButton = (props) => {
 
   return (
     <Button
-      variant={location.pathname === "/add" ? "outlined" : "contained"}
+      variant={location.pathname === "/newlist" ? "outlined" : "contained"}
       className={firstClick}
       onClick={handleClick}
       startIcon={<Add />}
-      disabled={location.pathname === "/add" ? true : false}
+      disabled={location.pathname === "/newlist" ? true : false}
     >
       {props.addButtonName}
     </Button>

@@ -6,11 +6,40 @@
   margin-bottom: 1rem;
 }
 
+.card__info {
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
 .card:last-child {
   margin-bottom: 0;
 }
 
 .card-name {
   color: white;
+  font-weight: 600;
   margin: 0;
+}
+
+.card__infoIcon {
+  color: white;
+}
+
+.card__closeIcon {
+  color: white;
+}
+
+.card__description {
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.card__editDescriptionButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.card__editIcon {
+  color: white;
 }

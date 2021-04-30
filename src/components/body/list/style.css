@@ -1,4 +1,5 @@
 .list {
+  align-self: flex-start;
   width: 25%;
   max-height: 60vh;
   margin-top: 1.5rem;
@@ -8,6 +9,7 @@
   background-color: #404040;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.11);
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .list:first-child {
@@ -21,8 +23,23 @@
   margin-bottom: 1.5rem;
 }
 
+.list__info--new-card {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.list__editIcon--first-click {
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 5px;
+  color: black;
+  margin-left: 0.5rem;
+}
+
 .list__editIcon {
   color: white;
+  margin-left: 0.5rem;
 }
 
 .list__nameList {
@@ -32,11 +49,17 @@
   margin: 0;
 }
 
-.teste {
+.list__cards {
   max-height: 50vh;
   overflow: auto;
 }
 
-.teste::-webkit-scrollbar {
+.list__cards--off {
+  max-height: 50vh;
+  overflow: auto;
+  opacity: 0.4;
+}
+
+.list__cards::-webkit-scrollbar {
   display: none;
 }

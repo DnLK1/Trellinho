@@ -16,6 +16,7 @@ const Header = () => {
           <EditableTitle
             classStyle="header__nomeProjeto"
             defaultText="Project name"
+            editable={"true"}
           />
         </div>
         <NotificationsIcon className="header__notifications" />

@@ -8,10 +8,10 @@ import "./style.css";
 const Controls = (props) => {
   return (
     <div className="container controls">
-      <AddButton addButtonName="Add list" path="/add" />
+      <AddButton addButtonName="Add list" path="/newlist" />
       <FilterTag />
       <Switch>
-        <Route path="/add">
+        <Route path="/newlist">
           <AddNewListForm onChange={props.onChange} />
         </Route>
       </Switch>

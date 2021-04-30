@@ -34,6 +34,7 @@ const AddNewListForm = (props) => {
         onChange={(event) => setNewListName(event.target.value)}
         className={classes.TextField}
         placeholder="Name your new list"
+        required
       />
       <Button type="submit" className={classes.Button} variant="contained">
         Add list

@@ -8,9 +8,14 @@ import { useLocation } from "react-router-dom";
 import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
+  formControl1: {
     marginLeft: theme.spacing(1),
     minWidth: 120,
+  },
+  formControl2: {
+    marginLeft: theme.spacing(1),
+    minWidth: 120,
+    opacity: 0.5,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -25,7 +30,11 @@ const FilterTag = () => {
     <div>
       <FormControl
         variant="outlined"
-        className={classes.formControl}
+        className={
+          location.pathname === "/add"
+            ? classes.formControl2
+            : classes.formControl1
+        }
         disabled={location.pathname === "/add" ? true : false}
       >
         <InputLabel>Filter tags</InputLabel>
