@@ -147,20 +147,30 @@ const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
           location.pathname === "/newcard" ? "list__cards--off" : "list__cards"
         }
       >
-        {card.map((card, index) => {
-          return (
-            <Card
-              key={index}
-              id={index}
-              listID={listIDAddCard}
-              onDescriptionChange={handleUpdateDescription}
-              onTitleChange={handleUpdateTitle}
-              cardName={card.title}
-              description={card.description}
-              handleDeleteCard={handleDeleteCard}
-            />
-          );
-        })}
+        {card
+          .filter((value) => {
+            if (keyword == "") {
+              return value;
+            } else if (
+              value.title.toLowerCase().includes(keyword.toLowerCase())
+            ) {
+              return value;
+            }
+          })
+          .map((card, index) => {
+            return (
+              <Card
+                key={index}
+                id={index}
+                listID={listIDAddCard}
+                onDescriptionChange={handleUpdateDescription}
+                onTitleChange={handleUpdateTitle}
+                cardName={card.title}
+                description={card.description}
+                handleDeleteCard={handleDeleteCard}
+              />
+            );
+          })}
       </div>
     </div>
   );
