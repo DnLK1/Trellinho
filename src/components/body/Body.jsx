@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import List from "./list/List";
 import Controls from "./controls/Controls";
 import ScrollContainer from "react-indiana-drag-scroll";
-import "./style.css";
 import HandleNewList from "../../contexts/HandleNewList";
+import "./style.css";
 
 const Body = () => {
   const [list, setList] = useState([]);
@@ -21,6 +21,14 @@ const Body = () => {
     setList(updatedListArray);
   }
 
+  function handleUpdatedTitle(value, id) {
+    let updatedTitle = value;
+    let updatedListArray = list.map((lists, index) =>
+      index === id ? updatedTitle : lists
+    );
+    setList(updatedListArray);
+  }
+
   return (
     <>
       <HandleNewList.Provider value={handleNewList}>
@@ -30,8 +38,10 @@ const Body = () => {
         {list.map((listTitle, index) => {
           return (
             <List
+              key={index}
               id={index}
               listName={listTitle}
+              handleUpdatedTitle={handleUpdatedTitle}
               handleDeleteList={handleDeleteList}
             />
           );

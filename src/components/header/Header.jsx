@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import EditableTitle from "./editableTitle/EditableTitle";
 import SearchBox from "./searchBox/SearchBox";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -6,7 +6,9 @@ import { useLocation } from "react-router-dom";
 import "./style.css";
 
 const Header = () => {
+  const [projectName, setProjectName] = useState("Project name");
   const location = useLocation();
+  const editableTitleMargin = "1rem";
 
   return (
     <header className="header container">
@@ -14,9 +16,9 @@ const Header = () => {
         <div className="container">
           <SearchBox disabled={location.pathname === "/add" ? true : false} />
           <EditableTitle
-            classStyle="header__nomeProjeto"
-            defaultText="Project name"
-            editable={"true"}
+            editableTitleMargin={editableTitleMargin}
+            defaultText={projectName}
+            setName={setProjectName}
           />
         </div>
         <NotificationsIcon className="header__notifications" />

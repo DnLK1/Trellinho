@@ -15,12 +15,6 @@
   margin-bottom: 0;
 }
 
-.card-name {
-  color: white;
-  font-weight: 600;
-  margin: 0;
-}
-
 .card__infoIcon {
   color: white;
   cursor: pointer;
@@ -30,4 +24,8 @@
   color: white;
   cursor: pointer;
   margin-left: 0.75rem;
+}
+
+.card__description {
+  display: none;
 }

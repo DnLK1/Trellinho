@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import EditableTitle from "../../header/editableTitle/EditableTitle";
 import Card from "../card/Card";
 import Add from "@material-ui/icons/Add";
@@ -7,6 +7,7 @@ import AddNewCard from "./addNewCard/AddNewCard";
 import { Route, Switch, useHistory, useLocation } from "react-router";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import HandleKeywordSearch from "../../../contexts/HandleKeywordSearch";
 
 import "./style.css";
 
@@ -20,9 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const List = ({ id, listName, handleDeleteList }) => {
+const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
   const [card, setCard] = useState([]);
   const [firstClick, setFirstClick] = useState("list__editIcon--first-click");
+  const { keyword } = useContext(HandleKeywordSearch);
   const pointer = { cursor: "pointer" };
   const listIDDeleteCard = "/deletecard/" + id;
   const listIDAddCard = "newcard/" + id;
@@ -46,10 +48,18 @@ const List = ({ id, listName, handleDeleteList }) => {
     setCard([...card, newCardInfoArrayInput]);
   }
 
-  function handleUpdate(event, id) {
+  function handleUpdateDescription(event, id) {
     let updatedDescription = event.target.updateDescription.value;
     let updatedCardArray = card.map((cards, index) =>
       index === id ? { ...cards, description: updatedDescription } : cards
+    );
+    setCard(updatedCardArray);
+  }
+
+  function handleUpdateTitle(event, id) {
+    let updatedTitle = event;
+    let updatedCardArray = card.map((cards, index) =>
+      index === id ? { ...cards, title: updatedTitle } : cards
     );
     setCard(updatedCardArray);
   }
@@ -61,6 +71,7 @@ const List = ({ id, listName, handleDeleteList }) => {
   function handleDeleteClick() {
     let listID = id;
     handleDeleteList(listID);
+    history.push("/");
   }
 
   function handleCancelClick() {
@@ -75,6 +86,10 @@ const List = ({ id, listName, handleDeleteList }) => {
     setCard(updatedCardArray);
   }
 
+  function handleChange(event) {
+    handleUpdatedTitle(event, id);
+  }
+
   return (
     <div className="list">
       <div
@@ -84,23 +99,21 @@ const List = ({ id, listName, handleDeleteList }) => {
             : "container list__info"
         }
       >
-        <EditableTitle
-          classStyle="list__nameList"
-          defaultText={listName}
-          editable={"true"}
-        />
+        <EditableTitle defaultText={listName} setName={handleChange} />
         <Switch>
           <Route exact path="/">
-            <Add
-              className={firstClick}
-              onClick={handleAddClick}
-              style={pointer}
-            />
-            <HighlightOffIcon
-              size="small"
-              className="list__backspaceIcon"
-              onClick={handleDeleteIconClick}
-            />
+            <div>
+              <Add
+                className={firstClick}
+                onClick={handleAddClick}
+                style={pointer}
+              />
+              <HighlightOffIcon
+                size="small"
+                className="list__backspaceIcon"
+                onClick={handleDeleteIconClick}
+              />
+            </div>
           </Route>
         </Switch>
         <Switch>
@@ -137,11 +150,12 @@ const List = ({ id, listName, handleDeleteList }) => {
         {card.map((card, index) => {
           return (
             <Card
+              key={index}
               id={index}
               listID={listIDAddCard}
-              onChange={handleUpdate}
+              onDescriptionChange={handleUpdateDescription}
+              onTitleChange={handleUpdateTitle}
               cardName={card.title}
-              editable={location.pathname === "/newcard" ? "false" : "true"}
               description={card.description}
               handleDeleteCard={handleDeleteCard}
             />

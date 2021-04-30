@@ -49,13 +49,6 @@
   margin-left: 0.75rem;
 }
 
-.list__nameList {
-  color: white;
-  font-weight: 600;
-  width: 85%;
-  margin: 0;
-}
-
 .list__cards {
   max-height: 50vh;
   overflow: auto;

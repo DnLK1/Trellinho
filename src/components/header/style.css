@@ -12,9 +12,7 @@
 }
 
 .header__nomeProjeto {
-  color: white;
-  font-weight: 600;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 .header__notifications {

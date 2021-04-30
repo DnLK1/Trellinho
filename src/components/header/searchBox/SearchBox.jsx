@@ -1,7 +1,8 @@
-import React from "react";
-import "./style.css";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
+import HandleKeywordSearch from "../../../contexts/HandleKeywordSearch";
+import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -18,10 +19,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchBox = ({ disabled }) => {
+  const { keyword, setKeyword } = useContext(HandleKeywordSearch);
   const classes = useStyles();
+
+  function handleChange(event) {
+    setKeyword(event.target.value);
+  }
 
   return (
     <TextField
+      value={keyword}
+      onChange={handleChange}
       InputProps={{
         classes: {
           input: classes.TextField,

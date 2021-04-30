@@ -42,7 +42,7 @@ const FilterTag = () => {
           <MenuItem value="">
             <em>All</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem>Ten</MenuItem>
         </Select>
       </FormControl>
     </div>

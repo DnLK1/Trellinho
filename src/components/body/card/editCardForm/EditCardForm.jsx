@@ -3,8 +3,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import { TextField } from "@material-ui/core";
 import "./style.css";
 
-const AddCardForm = ({
-  description,
+const EditCardForm = ({
   id,
   onChange,
   tempDescription,
@@ -21,8 +20,8 @@ const AddCardForm = ({
       <div className="card__description container">
         <TextField
           id="updateDescription"
-          fullWidth="true"
-          multiline="true"
+          fullWidth
+          multiline={true}
           value={tempDescription}
           onChange={(event) => {
             setTempDescription(event.target.value);
@@ -36,4 +35,4 @@ const AddCardForm = ({
   );
 };
 
-export default AddCardForm;
+export default EditCardForm;

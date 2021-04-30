@@ -37,7 +37,7 @@ const AddNewCard = ({ id, onChange }) => {
         onChange={(event) => setNewCardName(event.target.value)}
         className={classes.TextField}
         placeholder="New card name"
-        fullWidth="true"
+        fullWidth={true}
         required
       />
       <TextField
@@ -46,7 +46,7 @@ const AddNewCard = ({ id, onChange }) => {
         onChange={(event) => setNewCardDescription(event.target.value)}
         className={classes.TextField}
         placeholder="New card description"
-        fullWidth="true"
+        fullWidth={true}
       />
       <div className="new-card__buttons container">
         <Button
