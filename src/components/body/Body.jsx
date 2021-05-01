@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import List from "./list/List";
 import Controls from "./controls/Controls";
-import ScrollContainer from "react-indiana-drag-scroll";
 import HandleNewList from "../../contexts/HandleNewList";
 import HandleFilterTag from "../../contexts/HandleFilterTag";
 import "./style.css";
@@ -37,7 +36,7 @@ const Body = () => {
         <HandleNewList.Provider value={handleNewList}>
           <Controls />
         </HandleNewList.Provider>
-        <ScrollContainer className="container cards-lists">
+        <div className="container cards-lists">
           {list.map((listTitle, index) => {
             return (
               <List
@@ -49,7 +48,7 @@ const Body = () => {
               />
             );
           })}
-        </ScrollContainer>
+        </div>
       </HandleFilterTag.Provider>
     </>
   );
