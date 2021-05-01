@@ -1,51 +1,46 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState, useContext } from "react";
 import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import { useLocation } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { FormControl, InputLabel } from "@material-ui/core";
+import HandleFilterTag from "../../../../contexts/HandleFilterTag";
 import "./style.css";
 
-const useStyles = makeStyles((theme) => ({
-  formControl1: {
-    marginLeft: theme.spacing(1),
-    minWidth: 120,
-  },
-  formControl2: {
-    marginLeft: theme.spacing(1),
-    minWidth: 120,
+const FilterTag = ({ variant, selectStyle, defaultText, filterTypeAdd }) => {
+  const useStyles = makeStyles((theme) => ({
+    formControl: selectStyle,
     opacity: 0.5,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+  }));
 
-const FilterTag = () => {
   const classes = useStyles();
-  const location = useLocation();
+  const { filteredTag, setFilteredTag } = useContext(HandleFilterTag);
+  const [addTag, setAddTag] = useState("");
+
+  function handleChangeFilter(event) {
+    setFilteredTag(event.target.value);
+  }
+
+  function handleChangeAdd(event) {
+    setAddTag(event.target.value);
+  }
 
   return (
-    <div>
-      <FormControl
-        variant="outlined"
-        className={
-          location.pathname === "/add"
-            ? classes.formControl2
-            : classes.formControl1
-        }
-        disabled={location.pathname === "/add" ? true : false}
+    <FormControl variant={variant} className={classes.formControl}>
+      <InputLabel id="addCardTag">{defaultText}</InputLabel>
+      <Select
+        id="addCardTag"
+        native
+        label="Select Tag"
+        labelId="addCardTag"
+        value={filterTypeAdd === true ? addTag : filteredTag}
+        onChange={filterTypeAdd === true ? handleChangeAdd : handleChangeFilter}
       >
-        <InputLabel>Filter tags</InputLabel>
-        <Select label="Filter tags">
-          <MenuItem value="">
-            <em>All</em>
-          </MenuItem>
-          <MenuItem>Ten</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+        <option aria-label="None" value="" />
+        <option value={"#ff6961"}>Red</option>
+        <option value={"#9EDBD6"}>Green</option>
+        <option value={"#7DBDFF"}>Blue</option>
+        <option value={"#FFE196"}>Yellow</option>
+      </Select>
+    </FormControl>
   );
 };
 

@@ -8,6 +8,7 @@ import { Route, Switch, useHistory, useLocation } from "react-router";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import HandleKeywordSearch from "../../../contexts/HandleKeywordSearch";
+import HandleFilterTag from "../../../contexts/HandleFilterTag";
 
 import "./style.css";
 
@@ -25,6 +26,7 @@ const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
   const [card, setCard] = useState([]);
   const [firstClick, setFirstClick] = useState("list__editIcon--first-click");
   const { keyword } = useContext(HandleKeywordSearch);
+  const { filteredTag } = useContext(HandleFilterTag);
   const pointer = { cursor: "pointer" };
   const listIDDeleteCard = "/deletecard/" + id;
   const listIDAddCard = "newcard/" + id;
@@ -41,9 +43,11 @@ const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
   function handleNewCard(event) {
     let newCardNameSubmitted = event.target.addCardName.value;
     let newCardDescriptionSubmitted = event.target.addCardDescription.value;
+    let newCardTagSubmitted = event.target.addCardTag.value;
     let newCardInfoArrayInput = {
       title: newCardNameSubmitted,
       description: newCardDescriptionSubmitted,
+      tag: newCardTagSubmitted,
     };
     setCard([...card, newCardInfoArrayInput]);
   }
@@ -149,11 +153,18 @@ const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
       >
         {card
           .filter((value) => {
-            if (keyword == "") {
+            if (keyword === "") {
               return value;
             } else if (
               value.title.toLowerCase().includes(keyword.toLowerCase())
             ) {
+              return value;
+            }
+          })
+          .filter((value) => {
+            if (filteredTag === "") {
+              return value;
+            } else if (value.tag.includes(filteredTag)) {
               return value;
             }
           })
@@ -167,6 +178,7 @@ const List = ({ id, listName, handleDeleteList, handleUpdatedTitle }) => {
                 onTitleChange={handleUpdateTitle}
                 cardName={card.title}
                 description={card.description}
+                tag={card.tag}
                 handleDeleteCard={handleDeleteCard}
               />
             );

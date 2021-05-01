@@ -39,7 +39,6 @@ const SearchBox = ({ disabled }) => {
       placeholder={disabled === true ? "Disabled" : "Search cards..."}
       disableunderline="true"
       variant="outlined"
-      disabled={disabled}
     />
   );
 };

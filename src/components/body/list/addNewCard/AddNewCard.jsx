@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import "./style.css";
+import FilterTag from "../../controls/filterTag/FilterTag";
 
 const useStyles = makeStyles((theme) => ({
   TextField: {
@@ -47,6 +48,15 @@ const AddNewCard = ({ id, onChange }) => {
         className={classes.TextField}
         placeholder="New card description"
         fullWidth={true}
+      />
+      <FilterTag
+        variant={"standard"}
+        selectStyle={{
+          width: "100%",
+          marginBottom: "1rem",
+        }}
+        defaultText={"Select tag"}
+        filterTypeAdd={true}
       />
       <div className="new-card__buttons container">
         <Button

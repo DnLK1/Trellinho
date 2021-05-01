@@ -27,10 +27,11 @@ const useStyles2 = makeStyles((theme) => ({
 }));
 
 const Card = ({
-  description,
-  listID,
   id,
+  listID,
   cardName,
+  description,
+  tag,
   onDescriptionChange,
   onTitleChange,
   handleDeleteCard,
@@ -60,6 +61,10 @@ const Card = ({
 
   return (
     <div className="card">
+      <div
+        className={tag === "" ? "card__tagOff" : "card__tagOn"}
+        style={{ backgroundColor: tag }}
+      ></div>
       <div className="card__info container">
         <EditableTitle defaultText={cardName} setName={handleTitleChange} />
         <Switch>
