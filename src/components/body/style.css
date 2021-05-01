@@ -1,7 +1,7 @@
 .cards-lists {
   flex-direction: row;
   width: 95%;
-  height: 100%;
+  height: 78vh;
   margin: auto;
   overflow: auto;
 }
