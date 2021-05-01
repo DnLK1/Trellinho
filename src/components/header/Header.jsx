@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditableTitle from "./editableTitle/EditableTitle";
 import SearchBox from "./searchBox/SearchBox";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import Trellinho from "../../img/trellinho_logo.png";
 import "./style.css";
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
             setName={setProjectName}
           />
         </div>
-        <NotificationsIcon className="header__notifications" />
+        <img src={Trellinho} alt="Logo" className="header__notifications" />
       </div>
     </header>
   );
